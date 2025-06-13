@@ -1,4 +1,4 @@
-// app/products/[productId]/page.tsx
+// app/product/[id]/page.tsx
 import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -7,18 +7,18 @@ import Link from 'next/link';
 export default async function ProductPage({
   params,
 }: {
-  params: { productId: string };
+  params: { id: string };
 }) {
-  const { productId } = params ;
+  const { id } = params;
 
   const { data: product, error } = await supabase
     .from('products')
     .select('*')
-    .eq('id', productId)
+    .eq('id', id)
     .single();
 
   if (error || !product) {
-    notFound(); // will route to 404
+    notFound(); // renders 404 page
   }
 
   return (
@@ -46,7 +46,6 @@ export default async function ProductPage({
           <p className="text-gray-600 pt-4">
             {product.description || 'No description available.'}
           </p>
-          {/* Optionally include buttons or actions here */}
         </div>
       </div>
     </main>
