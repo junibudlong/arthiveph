@@ -1,13 +1,15 @@
-// app/products/[productId]/page.tsx
+// src/app/products/[productId]/page.tsx
 import { supabase } from '@/lib/supabase';
 import ProductDisplay from '@/components/ProductDisplay';
 import { notFound } from 'next/navigation';
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { productId: string };
-}) {
+type Params = {
+  params: {
+    productId: string;
+  };
+};
+
+export default async function ProductPage({ params }: Params) {
   const { productId } = params;
 
   const { data: product, error } = await supabase
