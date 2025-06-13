@@ -2,7 +2,7 @@
 import { supabase } from '@/lib/supabase';
 import ProductDisplay from '@/components/ProductDisplay';
 import { notFound } from 'next/navigation';
-import type { PageProps } from './page.d.ts'; // this is the trick
+import type { PageProps } from '@/[productId]/page.d.ts'; // this is the trick
 
 export default async function ProductPage({ params }: PageProps) {
   const { productId } = params;
