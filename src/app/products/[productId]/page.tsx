@@ -6,11 +6,6 @@ import { notFound } from 'next/navigation';
 
 interface ProductPageParams {
   productId: string;
-  title: string;
-  price: number;
-  image_url: string;
-  description?: string;
-  artist_id: string;
 }
 
 export default async function ProductPage(params: ProductPageParams) {
