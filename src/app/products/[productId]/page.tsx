@@ -1,4 +1,4 @@
-// src/app/products/[productId]/page.tsx
+// app/products/[productId]/page.tsx
 import { supabase } from '@/lib/supabase';
 import ProductDisplay from '@/components/ProductDisplay';
 import { notFound } from 'next/navigation';
