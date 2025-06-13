@@ -5,11 +5,9 @@ import { notFound } from 'next/navigation';
 
 export default async function ProductPage({
   params,
-}: {
-  params: {
-    productId: string;
-  };
-}) {
+}: 
+  string
+) {
   const { productId } = params;
 
   const { data: product, error } = await supabase
