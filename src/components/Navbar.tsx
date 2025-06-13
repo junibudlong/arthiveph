@@ -27,7 +27,7 @@ export default function Navbar() {
         {/* Login button when not authenticated */}
         {!isLoading && !user && (
           <Link href="/login" className="text-gray-700 hover:text-blue-600">
-            Login / Create an Account
+            Login/Signup
           </Link>
         )}
 
