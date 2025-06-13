@@ -6,7 +6,16 @@ import useUser from '@/hooks/useUser';
 import { useEffect, useState } from 'react';
 import AddToCart from '@/app/products/[productId]/AddToCart';
 
-export default function ProductDisplay({ product }: { product: any }) {
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  image_url: string;
+  description?: string;
+  artist_id: string;
+}
+
+export default function ProductDisplay({ product }: { product: Product }) {
   const { user } = useUser();
   const [isOwner, setIsOwner] = useState(false);
 
