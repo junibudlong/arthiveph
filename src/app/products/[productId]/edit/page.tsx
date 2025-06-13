@@ -5,7 +5,16 @@ import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
-import useUser from '@/hooks/useUser'; // adjust if yours is named differently
+import useUser from '@/hooks/useUser';
+
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  description: string;
+  image_url: string;
+  artist_id: string;
+}
 
 export default function EditProductPage() {
   const { user, isLoading } = useUser();
@@ -13,7 +22,7 @@ export default function EditProductPage() {
   const params = useParams();
   const productId = params?.productId;
 
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState<number>(0);
   const [description, setDescription] = useState('');
@@ -56,11 +65,11 @@ export default function EditProductPage() {
     setLoading(true);
     setError(null);
 
-    let imageUrl = product.image_url;
+    let imageUrl = product?.image_url;
 
     if (image) {
       const ext = image.name.split('.').pop();
-      const filePath = `${user.id}-${uuidv4()}.${ext}`;
+      const filePath = `${user?.id}-${uuidv4()}.${ext}`;
       const { error: uploadError } = await supabase.storage
         .from('product-images')
         .upload(filePath, image);
