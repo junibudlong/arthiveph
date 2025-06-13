@@ -1,13 +1,13 @@
 // app/products/[productId]/page.tsx
 import { supabase } from '@/lib/supabase';
 import ProductDisplay from '@/components/ProductDisplay';
+import { notFound } from 'next/navigation';
 
-
-interface PageProps {
+interface Props {
   params: { productId: string };
 }
 
-export default async function ProductPage({ params }: PageProps) {
+export default async function ProductPage({ params }: Props) {
   const { productId } = params;
 
   const { data: product, error } = await supabase
@@ -17,9 +17,8 @@ export default async function ProductPage({ params }: PageProps) {
     .single();
 
   if (error || !product) {
-    return <p className="p-6 text-red-600">Product not found.</p>;
+    notFound(); // Optional: sends user to 404
   }
 
-  return <ProductDisplay product={product} />
-  ;
+  return <ProductDisplay product={product} />;
 }
