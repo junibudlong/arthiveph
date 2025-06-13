@@ -3,7 +3,13 @@ import { supabase } from '@/lib/supabase';
 import ProductDisplay from '@/components/ProductDisplay';
 import { notFound } from 'next/navigation';
 
-export default async function ProductPage({ params }: { params: { productId: string } }) {
+type ProductPageProps = {
+  params: {
+    productId: string;
+  };
+};
+
+export default async function ProductPage({ params }: ProductPageProps) {
   const { productId } = params;
 
   const { data: product, error } = await supabase
